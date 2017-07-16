@@ -13,9 +13,9 @@
 
 #include <stdio.h>
 
-// #if PLATFORM == KL25Z
-//   #define printf(fmt,args...) {}
-// #endif
+#if PLATFORM == KL25Z
+  #define printf(fmt,args...) {}
+#endif
 
 
 #endif /*__PLATFORM_H__*/

@@ -10,22 +10,25 @@
 #ifndef __CIRCBUF_H__
 #define __CIRCBUF_H__
 
-#define BUF_SIZE 6
+#include <stdint.h> 
+
+#define BUF_TEST_SIZE 3
 
 typedef struct {
-uint8_t *buffer;
-uint8_t head;
-uint8_t tail;
-uint8_t count;
-uint8_t length; 
+	uint8_t *buffer;
+	uint8_t head;
+	uint8_t tail;
+	uint8_t count;
+	uint8_t length; 
 }CB_t;
 
 typedef enum {
-buf_full,
-buf_empty,
-success,
-null_error,
-free_success
+	buf_full,
+	buf_empty,
+	success,
+	null_error_databuff,
+	null_error_circbuff,
+	free_success
 }CB_status;
 
 CB_status status;
