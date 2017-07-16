@@ -1,4 +1,10 @@
 #include<uart.h>
+#include "MKL25Z4.h"
+#include<stdint.h>
+#include<stdio.h>
+uint32_t baud=115200;
+uint16_t sbrate=0;
+uint32_t MCGfreq=48000000;
 
 void UART_configure()
 {
@@ -11,6 +17,7 @@ void UART_configure()
 	PORTE_PCR20|=PORT_PCR_MUX(4); //TX of UART0 functionality is used
 	PORTE_PCR21|=PORT_PCR_MUX(4); //RX of UART0 functionality is used
 	UART0_C2 = BIT0; //diable rx, tx
+	UART0_C1|=UART0_C1_LOOPS_MASK; //loop back mode
     UART0_BDH|=UART0_BDH_SBNS(0);// one stop bit selected
     sbrate=MCGfreq/(baud*16); //sbr
     UART0_BDH =((sbrate>>8)&UART_BDH_SBR_MASK);  // baud rate register high
@@ -25,10 +32,6 @@ uint8_t UART_send(uint8_t *character)
 	{
 		return 0;
 	}
-	if(*character=='\0')
-	{
-		return 0;
-	}
 	while(UART0_S1 & UART0_S1_TDRE_MASK==0) // block transmission
 	{
 	UART0_D=*character;
@@ -40,10 +43,6 @@ uint8_t UART_send_n(uint8_t *data , uint8_t length)
 {
 	uint8_t counter=0;
 	if(data==NULL)
-	{
-		return 0;
-	}
-	if(*data=='\0')
 	{
 		return 0;
 	}
@@ -78,10 +77,6 @@ uint8_t UART_receive_n(uint8_t *receivedata , uint8_t length)
 	{
 		return 0;
 	}
-	if(*receivedata=='\0')
-	{
-		return 0;
-	}
 	if(length==0)
 	{
 		return 0;
@@ -92,3 +87,6 @@ uint8_t UART_receive_n(uint8_t *receivedata , uint8_t length)
 	}
 	return 1;
 }
+
+
+
