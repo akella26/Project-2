@@ -14,11 +14,8 @@
 
 int main()
 {
-//#ifdef PROJECT1
-//	project1();
-	printf("\nEntered main\n");
+
 #ifdef PROJECT2
-	printf("\nEntered ifdef condition\n");
 	project2();
 #endif
 	return 0;
