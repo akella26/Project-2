@@ -35,6 +35,9 @@
 
 int main(void)
 {
+ #ifdef PROJECT2
+ project2();
+ #endif
 	uint8_t i = 0;
 	UART_configure();
 	uint8_t tx_test = 'a'; uint8_t receive_test=0;
