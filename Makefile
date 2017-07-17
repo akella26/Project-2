@@ -28,7 +28,6 @@ CFLAGS =  -Wall \
           -O0 \
           -std=c99 \
           -D PROJECT2 \
-          -D PROJECT1 \
           -D VERBOSE 
 # define the PLATFORM to be used          
 ifeq ($(PLATFORM),BBB) 
@@ -75,7 +74,7 @@ LDFLAGS = -Wl,-Map=$(BASENAME).map
 # library
 #
 LIB_SRCS = \
-	project2.c circbuf.c debug.c conversion.c memory.c project1.c
+	project2.c circbuf.c debug.c conversion.c memory.c 
 LIB_OBJS = $(LIB_SRCS:%.c=%.o)
 LIB_HEADERS = $(LIB_SRCS:%.c=%.h)
 LIB = libutils.a

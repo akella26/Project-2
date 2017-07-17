@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include "platform.h"
 #include "circbuf.h"
 #include "debug.h"
 #include "project2.h"

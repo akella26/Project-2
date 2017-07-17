@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-#define INVALID_POINTER 1
+#define INVALID_POINTER (1)
 #define DATA_SET_SIZE_W (10)
 #define MEM_SET_SIZE_B  (32)
 #define MEM_SET_SIZE_W  (8)

@@ -12,7 +12,6 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "platform.h"
 #include "circbuf.h"
 
 
