@@ -1,4 +1,10 @@
-
+/**
+ * @file unit_test.c
+ * @brief This file contains unit tests for testing conversion.c
+ * @author Sowmya Akella
+ * @date July 16, 2017
+ *
+ */
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,7 +16,11 @@
 
 #include "conversion.h"
 
-/*Checking that big to little function doesn't return invalid pointer status*/
+/*
+ * @brief - Checking that big to little function doesn't return invalid pointer status and converts correctly
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void big_to_little(void **state)
 {
   uint32_t data[BTOL_TEST_SIZE] = {0x51,0x24,0x25};
@@ -23,7 +33,11 @@ void big_to_little(void **state)
   assert_int_equal(data[2],0x51);
 }
 
-/*Checking that little to big function doesn't return invalid pointer status*/
+/*
+ * @brief - Checking that littleto big function doesn't return invalid pointer status and converts correctly
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void little_to_big(void **state)
 {
   uint32_t data[LTOB_TEST_SIZE] = {0x51,0x24,0x25};
@@ -35,6 +49,12 @@ void little_to_big(void **state)
   assert_int_equal(data[1],0x24);
   assert_int_equal(data[2],0x51);
 }
+
+/*
+ * @brief - Main with list of function pointers
+ * @param - arguments argc and argv
+ * @return - Test results
+ */
 
 int main(int argc, char **argv)
 {

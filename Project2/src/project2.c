@@ -1,74 +1,90 @@
-/******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
- *
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
- * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
- *
- *****************************************************************************/
+
+ 
 /**
- * @file project1_test.c 
+ * @file project2.c 
  * @brief This file is to be used to project 1.
  *
- * @author Alex Fosdick
- * @date April 2, 2017
+ * @author Sowmya , Pavani
+ * @date July 16 2017
  *
  */
 
 #include <stdio.h>
 #include <stdint.h>
-#include "platform.h"
 #include "circbuf.h"
 #include "debug.h"
 #include "project2.h"
 
 void project2(void) 
 {
-  basic_test1();
-}
 
-void basic_test1()
-{
- uint8_t i,length,item_removed,peek_item; 
-  CB_t circ_buf;
-  CB_t *buf_pointer1 = &circ_buf;
-  length = BUF_SIZE;
-  status = CB_init(buf_pointer1,length);
-  status = CB_buffer_add_item(buf_pointer1,10);
-  status = CB_buffer_add_item(buf_pointer1,20);
-  status = CB_buffer_add_item(buf_pointer1,30);
-  status = CB_buffer_add_item(buf_pointer1,40);
-  status = CB_buffer_add_item(buf_pointer1,50);
-  status = CB_buffer_add_item(buf_pointer1,60);
-  status = CB_buffer_remove_item(buf_pointer1,&item_removed);
-  printf("Item removed is = %d \n",item_removed);
-  status = CB_buffer_remove_item(buf_pointer1,&item_removed);
-  printf("Item removed is = %d \n",item_removed);
-  status = CB_peek(buf_pointer1,4,&peek_item);
-  printf("Item peeked is  = %d \n",peek_item);
-  printf("Count = %d \n",buf_pointer1->count);
-  printf("Head index = %d \n",buf_pointer1->head);
-  printf("Tail index = %d \n",buf_pointer1->tail);
-  printf("\nFinal Elements of the buffer:\n");
-  for(i=0;i<length;i++)
-    printf("\n %d,",buf_pointer1->buffer[i]);
-    printf("\n");
-  status = CB_destroy(buf_pointer1);
-  switch (status)
-  {
-    case buf_full: printf("\nBuffer is full, try again later\n"); 
-                    // exit(1);
-                     break;
-    case buf_empty: printf("\nBuffer is empty, no action happened\n");
-                 break;
-    case success: printf("\nBuffer action success\n"); 
-             break;
-    case null_error:printf("\nNull pointer detected. Exiting\n");
-             break;
-    case free_success:printf("\nFreeing is a success\n");
-             break;
-  }
-  return; 
 }
+/*Checking no of alphabets in the string*/
+void alpha_count(int8_t * src, int32_t length)
+{      /* Checking Alpha Count in the string */
+  uint8_t count1 = 0;
+  uint8_t i=0;
+  if(length > 0)
+  {
+    for(i = 0; i < length; i++)
+    {        /* if condition to check for Alphabetical characters */
+      if((*src >= 'a' && *src <= 'z') || (*src >= 'A' && *src <= 'Z'))
+      {
+        count1++;
+      }
+      src++;
+    }
+  }
+ 
+}
+/*Checking number of punctuations*/
+void punct_count(int8_t * src, int32_t length)
+{               /* Checking Punctuations  Count in the string */
+  uint8_t count2=0;
+  uint8_t i;
+  if(length > 0)
+  {
+    for(i = 0; i < length; i++)
+    {
+      if((int)*src > 33 && (int)*src < 48){                    /* if condition to check for punctuation characters */
+        count2++;
+      }
+      src++;
+    }
+  }
+}
+/*Checking no of misc characters*/
+void misc_count(int8_t * src, int32_t length)
+{      
+  uint8_t count3=0;
+  uint8_t i;
+  if(length > 0)
+  {
+    for(i = 0; i < length; i++)                /* if condition to check for miscelleneous characters */
+    {
+      if(((int)*src > 0 && (int)*src < 33) || ((int)*src > 59 && (int)*src < 65) || ((int)*src > 90 && (int)*src < 97) || ((int)*src > 120 && (int)*src < 128)){
+        count3++;
+      }
+      src++;
+    }
+  }
+}    
+/*Checking number of numbers*/
+void num_count(int8_t * src, int32_t length)
+{          /* Checking Miscellaneous  Count in the string */
+  uint8_t count4=0;
+  uint8_t i=0;
+  if(length > 0)
+  {
+    for(i = 0; i < length; i++)
+    {     /* if condition to check for Numbers */
+      if(*src >= '0' && *src <= '9')
+      {
+        count4++;
+      }
+      src++;
+    }
+  }
+
+} 
+

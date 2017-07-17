@@ -1,4 +1,10 @@
-
+/**
+ * @file unit_test.c
+ * @brief This file contains unit tests for teting circular buffer
+ * @author Sowmya Akella
+ * @date July 16, 2017
+ *
+ */
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,9 +16,12 @@
 
 #include "circbuf.h"
 
+/*
+ * @brief - Checks that data buffer inside circular buffer is initialized and freed correctly  
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 
-
-/*Checks that data buffer inside circular buffer is initialized and freed correctly*/
 void AllocateFree(void **state)
 {
   CB_t *circbuf;
@@ -27,7 +36,12 @@ void AllocateFree(void **state)
   status = CB_destroy(circbuf);
   assert_int_equal(status,free_success);
 }
-/*Checking that all functions where Circular buffer is passed, the pointer is valid*/
+
+/*
+ * @brief - Checking that all functions where Circular buffer is passed, the pointer is valid
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void InvalidPointer(void **state)
 {
   CB_t *circbuf;
@@ -60,6 +74,11 @@ void InvalidPointer(void **state)
 
 }
 
+/*
+ * @brief - Checking if non initialized pointers are detected
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void NonInitializedPointer(void **state)
 {
   CB_t *circbuf;
@@ -79,6 +98,11 @@ void NonInitializedPointer(void **state)
   assert_int_equal(status,free_success);
 }
 
+/*
+ * @brief - Checking 3 cases for addition and deletion - add 1 del 1, add 2 del 1, add 3 del 3
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void AddRemove(void **state)
 {
   CB_t *circbuf;
@@ -129,7 +153,11 @@ void AddRemove(void **state)
   assert_int_not_equal(status,null_error_circbuff);
   assert_int_equal(status,free_success);
 }
-
+/*
+ * @brief - Checking if buffer full returns true - positive testing
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void BufferFull(void **state)
 {
   CB_t *circbuf;
@@ -159,6 +187,11 @@ void BufferFull(void **state)
   assert_int_equal(status,free_success);
 }
 
+/*
+ * @brief - Checking if buffer empty returns true - positive testing
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void BufferEmpty(void **state)
 {
   CB_t *circbuf;
@@ -180,6 +213,12 @@ void BufferEmpty(void **state)
   assert_int_not_equal(status,null_error_circbuff);
   assert_int_equal(status,free_success);
 }
+
+/*
+ * @brief - Checking wrapping around circular buffer and adding is successfull
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 
 void WrapAdd(void **state)
 {
@@ -217,6 +256,11 @@ void WrapAdd(void **state)
   assert_int_not_equal(status,null_error_circbuff);
   assert_int_equal(status,free_success);
 }
+/*
+ * @brief - Checking wrapping around circular buffer and removing is successfull
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 
 void WrapRemove(void **state)
 {
@@ -264,8 +308,11 @@ void WrapRemove(void **state)
   assert_int_not_equal(status,null_error_circbuff);
   assert_int_equal(status,free_success);
 }
-
-/*Negative testing*/
+/*
+ * @brief - Checking of overfil addition of circular buffer returns failure - negative testing
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void OverFill(void **state)
 {
   CB_t *circbuf;
@@ -295,7 +342,11 @@ void OverFill(void **state)
   assert_int_equal(status,free_success);
 }
 
-/*Negative testing*/
+/*
+ * @brief - Checking of overempty deletion of circular buffer returns failure - negative testing
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void OverEmpty(void **state)
 {
   CB_t *circbuf;
@@ -318,6 +369,11 @@ void OverEmpty(void **state)
   assert_int_equal(status,free_success);
 }
 
+/*
+ * @brief - Main with list of function pointers
+ * @param - arguments argc and argv
+ * @return - Test results
+ */
 int main(int argc, char **argv)
 {
   const struct CMUnitTest tests[] = {

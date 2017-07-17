@@ -1,4 +1,10 @@
-
+/**
+ * @file unit_test.c
+ * @brief This file contains unit tests for testing memory
+ * @author Sowmya Akella
+ * @date July 16, 2017
+ *
+ */
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,7 +16,12 @@
 
 #include "memory.h"
 
-/*Checking that big to little function doesn't return invalid pointer status*/
+/*
+ * @brief - Checking that moving memory is succesfull with no overlap and different overlap types
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
+
 void memmove_tests(void **state)
 {
   uint8_t i;
@@ -87,7 +98,11 @@ void memmove_tests(void **state)
   free_words( (uint32_t*)set );
 }
 
-/*Checking that little to big function doesn't return invalid pointer status*/
+/*
+ * @brief - Checking that setting of memory is successfull
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 void memset_tests(void **state)
 {
   uint8_t i;
@@ -119,6 +134,12 @@ void memset_tests(void **state)
 
   free_words( (uint32_t*)set );  
 }
+
+/*
+ * @brief - Checking that setting of memory to zero is successfull
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 
 void memzero_tests(void **state)
 {
@@ -152,6 +173,12 @@ void memzero_tests(void **state)
   }
   free_words( (uint32_t*)set );  
 }
+
+/*
+ * @brief - Checking that reversing memory for even and odd number of numbers is successfull
+ * @param - arguments - cmocka state double pointer
+ * @return - none 
+ */
 
 void reverse_tests(void **state)
 {
@@ -209,6 +236,12 @@ void reverse_tests(void **state)
   }
   free_words( (uint32_t*)copy );  
 }
+
+/*
+ * @brief - Main with list of function pointers
+ * @param - arguments argc and argv
+ * @return - Test results
+ */
 
 int main(int argc, char **argv)
 {

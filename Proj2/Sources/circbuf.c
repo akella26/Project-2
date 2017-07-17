@@ -1,21 +1,9 @@
-/**
- * @file unit_test.c
- * @brief This file contains function for performing actions with circular buffer
- * @author Sowmya Akella
- * @date July 16, 2017
- *
- */
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include "circbuf.h"
 
-/*
- * @brief - Initializes circular buffer head and tail, allocates memory  
- * @param - arguments - pointer to circular buffer and length
- * @return - Error/Success status enum variable
- */
-
+/* Function to initialize the circular buffer*/
 CB_status CB_init(CB_t * buf_pointer,uint8_t length)
 {
 	if(buf_pointer == NULL)
@@ -34,13 +22,7 @@ CB_status CB_init(CB_t * buf_pointer,uint8_t length)
 
 	return status;
 }
-
-/*
- * @brief - Function to add an item to the circular buffer 
- * @param - arguments - pointer to circular buffer and new item to add
- * @return - Error/Success status enum variable
- */
-
+/*Function to add an item to the circular buffer*/
 CB_status CB_buffer_add_item(CB_t * buf_pointer, uint8_t new_item)
 {
 	if(buf_pointer == NULL)
@@ -68,11 +50,7 @@ CB_status CB_buffer_add_item(CB_t * buf_pointer, uint8_t new_item)
     return status;
 }
 
-/*
- * @brief - Function to remove an item from the circular buffer 
- * @param - arguments - pointer to circular buffer and pointer to item removed
- * @return - Error/Success status enum variable
- */
+/*Function to remove an item from the circular buffer*/
 CB_status CB_buffer_remove_item(CB_t * buf_pointer,uint8_t * item_removed)
 {
 	if(buf_pointer == NULL)
@@ -101,13 +79,7 @@ CB_status CB_buffer_remove_item(CB_t * buf_pointer,uint8_t * item_removed)
     }        
     return status;
 }
-
-/*
- * @brief - Function to check if the circular buffer is full or not
- * @param - arguments - pointer to circular buffer 
- * @return - Error/Success status enum variable
- */
-
+/*Function to check if the circular buffer is full*/
 CB_status CB_is_full(CB_t * buf_pointer)
 {
 	if(buf_pointer == NULL)
@@ -123,12 +95,7 @@ CB_status CB_is_full(CB_t * buf_pointer)
 
 	return status;
 }
-
-/*
- * @brief - Function to check if the circular buffer is empty or not
- * @param - arguments - pointer to circular buffer 
- * @return - Error/Success status enum variable
- */
+/*Function to check of the circular buffer is empty*/
 CB_status CB_is_empty(CB_t * buf_pointer)
 {
 	if(buf_pointer == NULL)
@@ -143,12 +110,7 @@ CB_status CB_is_empty(CB_t * buf_pointer)
 
 	return status;
 }
-
-/*
- * @brief - Function to peek into the circular buffer and check the value stored at a position
- * @param - arguments - pointer to circular buffer , position to peek into and pointer to item peeked
- * @return - Error/Success status enum variable
- */
+/*Function to peek into the circular buffer and check the value stored at a position*/
 
 CB_status CB_peek(CB_t * buf_pointer, uint8_t peek_position,uint8_t * peek_item)
 {
@@ -167,13 +129,6 @@ CB_status CB_peek(CB_t * buf_pointer, uint8_t peek_position,uint8_t * peek_item)
 }
 
 /*Function to deallocate the circ buffer pointer and data buffer pointer*/
-
-/*
- * @brief - Function to destroy dynamically allocated memory 
- * @param - arguments - pointer to circular buffer
- * @return - Error/Success status enum variable
- */
-
 CB_status CB_destroy(CB_t * buf_pointer)
 {
 	if(buf_pointer == NULL)
