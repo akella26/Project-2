@@ -19,11 +19,11 @@ typedef struct {
 	uint8_t head;
 	uint8_t tail;
 	uint8_t count;
-	size_t length;
+	size_t length; 
 }CB_t;
 
 typedef enum {
-	buf_full=0,
+	buf_full = 0,
 	buf_notfull,
 	buf_empty,
 	buf_notempty,
@@ -32,7 +32,6 @@ typedef enum {
 	null_error_circbuff,
 	free_success
 }CB_status;
-
 
 CB_status status;
 
